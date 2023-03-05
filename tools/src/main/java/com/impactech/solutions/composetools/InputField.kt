@@ -1,6 +1,7 @@
 package com.impactech.solutions.composetools
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardActionScope
 import androidx.compose.foundation.text.KeyboardActions
@@ -84,7 +85,7 @@ fun InputField(
                         CircularProgressIndicator(
                             color = borderColor,
                             strokeWidth = 2.5.dp,
-                            modifier = modifier.size(40.dp)
+                            modifier = modifier.size(25.dp)
                         )
                     }else{
                         Icon(
@@ -98,7 +99,12 @@ fun InputField(
             enabled = readOnly.not(),
             modifier = modifier
                 .fillMaxWidth()
-                .clickable { onClick?.invoke() }
+                .clickable(
+                    indication = null,
+                    interactionSource = remember {
+                        MutableInteractionSource()
+                    }
+                ){ if(!isLoading) onClick?.invoke() }
                 .padding(top = 14.dp),
             textStyle = MaterialTheme.typography.body1,
             colors = TextFieldDefaults.outlinedTextFieldColors(
