@@ -34,6 +34,7 @@ fun InputField(
     placeHolder: String,
     label: String,
     error: String? = null,
+    isLoading: Boolean = false,
     isPassword: Boolean = false,
     readOnly: Boolean = false,
     onImePerformed: (KeyboardActionScope.() -> Unit)?
@@ -70,22 +71,30 @@ fun InputField(
             ),
             readOnly = readOnly,
             visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
-            trailingIcon = if(isPassword){
-                {
+            trailingIcon = {
+                if(isPassword){
                     IconButton(onClick = { showPassword = showPassword.not() }) {
                         Icon(
                             imageVector = if (!showPassword) Icons.Filled.Visibility else Icons.Filled.VisibilityOff,
                             contentDescription = if (showPassword.not()) "Hide password" else "Show password"
                         )
                     }
-                }
-            } else if(trailingIcon != null) {{
-                Icon(
-                    imageVector = trailingIcon,
-                    contentDescription = "Trailing Icon"
-                )
-            }} else null,
+                }else if(trailingIcon != null){
+                    if(isLoading){
+                        CircularProgressIndicator(
+                            color = borderColor,
+                            strokeWidth = 2.5.dp,
+                            modifier = modifier.size(40.dp)
+                        )
+                    }else{
+                        Icon(
+                            imageVector = trailingIcon,
+                            contentDescription = "Trailing Icon"
+                        )
+                    }
 
+                }
+            },
             enabled = readOnly.not(),
             modifier = modifier
                 .fillMaxWidth()
