@@ -104,8 +104,7 @@ fun InputField(
                     interactionSource = remember {
                         MutableInteractionSource()
                     }
-                ){ if(!isLoading) onClick?.invoke() }
-                .padding(top = 14.dp),
+                ){ if(!isLoading) onClick?.invoke() },
             textStyle = MaterialTheme.typography.body1,
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 textColor = textColor,
