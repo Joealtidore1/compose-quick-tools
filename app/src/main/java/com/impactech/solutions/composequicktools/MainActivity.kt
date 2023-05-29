@@ -49,7 +49,8 @@ class MainActivity : ComponentActivity() {
                         }
                     ) {
                         Column(
-                            modifier = Modifier.padding(it)
+                            modifier = Modifier
+                                .padding(it)
                                 .padding(15.dp)
                         ) {
                             InputField(
@@ -66,15 +67,40 @@ class MainActivity : ComponentActivity() {
 
                             Spacer(modifier = Modifier.height(15.dp))
 
-                            CustomButton(text = "Try it", background = Color.Blue) {
-                                CoroutineScope(Dispatchers.Main).launch {
-                                    //Change color before showing snackbar
-                                    snackbarColor.value = Color.Blue
+                            Row {
+                                CustomButton(
+                                    text = "Try it",
+                                    background = Color.Blue,
+                                    isLoading = true,
+                                    modifier = Modifier.weight(1f)
+                                ) {
+                                    CoroutineScope(Dispatchers.Main).launch {
+                                        //Change color before showing snackbar
+                                        snackbarColor.value = Color.Blue
 
-                                    snackbarState.showSnackbar(value.takeUnless {
-                                        it.isEmpty()
-                                    }?: "Text field is empty")
+                                        snackbarState.showSnackbar(value.takeUnless {
+                                            it.isEmpty()
+                                        } ?: "Text field is empty")
+                                    }
                                 }
+                                Spacer(modifier = Modifier.width(20.dp))
+                                CustomButton(
+                                    text = "Try it",
+                                    background = Color.Blue,
+                                    isLoading = true,
+                                    modifier = Modifier.weight(1f)
+                                ) {
+                                    CoroutineScope(Dispatchers.Main).launch {
+                                        //Change color before showing snackbar
+                                        snackbarColor.value = Color.Blue
+
+                                        snackbarState.showSnackbar(value.takeUnless {
+                                            it.isEmpty()
+                                        } ?: "Text field is empty")
+                                    }
+                                }
+
+
                             }
                         }
                     }
