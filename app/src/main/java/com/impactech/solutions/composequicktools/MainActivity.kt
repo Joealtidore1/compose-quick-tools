@@ -1,6 +1,7 @@
 package com.impactech.solutions.composequicktools
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
@@ -18,6 +19,7 @@ import com.impactech.solutions.composequicktools.ui.theme.ComposeQuickToolsTheme
 import com.impactech.solutions.composetools.CustomButton
 import com.impactech.solutions.composetools.CustomSnackBar
 import com.impactech.solutions.composetools.InputField
+import com.impactech.solutions.composetools.OtpTextField
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -67,6 +69,17 @@ class MainActivity : ComponentActivity() {
 
                             Spacer(modifier = Modifier.height(15.dp))
 
+                            OtpTextField(
+                                value = value,
+                                color = Color.Blue,
+                                onChange = {
+                                    value = it
+                                },
+                                onDone = {
+                                    Toast.makeText(this@MainActivity, it, Toast.LENGTH_LONG).show()
+                                }
+                            )
+
                             Row {
                                 CustomButton(
                                     text = "Try it",
@@ -83,7 +96,11 @@ class MainActivity : ComponentActivity() {
                                         } ?: "Text field is empty")
                                     }
                                 }
-                                Spacer(modifier = Modifier.width(20.dp))
+                                Spacer(modifier = Modifier.width(40.dp))
+
+
+                                Spacer(modifier = Modifier.width(40.dp))
+
                                 CustomButton(
                                     text = "Try it",
                                     background = Color.Blue,
