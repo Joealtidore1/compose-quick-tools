@@ -9,7 +9,7 @@ publishing{
         release(MavenPublication){
             groupId = 'com.github.Joealtidore1'
             artifactId = 'compose-quick-tools'
-            version = '1.10.0'
+            version = '1.2.0'
 
             afterEvaluate{
                 from components.release
