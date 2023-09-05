@@ -25,7 +25,7 @@ fun InputField(
     value: String,
     onChange: (String) -> Unit,
     textColor: Color = Color.Black,
-    backgroundColor: Color,
+    backgroundColor: Color = Color.White.copy(alpha = 0.2f),
     borderColor: Color,
     options: KeyboardOptions = KeyboardOptions(
         keyboardType = KeyboardType.Text
@@ -38,7 +38,7 @@ fun InputField(
     isLoading: Boolean = false,
     isPassword: Boolean = false,
     readOnly: Boolean = false,
-    onImePerformed: (KeyboardActionScope.() -> Unit)?
+    onImePerformed: (KeyboardActionScope.() -> Unit)? = null
 ){
     var showPassword by remember {
         mutableStateOf(isPassword.not())
