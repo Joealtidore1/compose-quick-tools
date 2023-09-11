@@ -105,7 +105,7 @@ fun InputField(
                         MutableInteractionSource()
                     }
                 ){ if(!isLoading) onClick?.invoke() },
-            textStyle = MaterialTheme.typography.body1,
+            textStyle = MaterialTheme.typography.body1.copy(color = textColor),
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 textColor = textColor,
                 focusedBorderColor = borderColor,
